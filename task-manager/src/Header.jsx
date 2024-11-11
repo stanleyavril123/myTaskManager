@@ -1,33 +1,50 @@
 import React from "react";
-import Box from '@mui/material/Box';
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Box } from "@mui/material";
 
+const buttonLabels = ["Home", "Tasks", "Pomodoro", "Dashboard"];
 
 const Header = () => (
+
     <header>
         <Box
             sx={{
                 outline: 1,
-                height: '100px',
+                height: '125px',
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'space-between',
+                paddingLeft: '650px',
             }}
             >
             
             <Stack 
-            direction="row" spacing={15}
+            direction="row" spacing={8}
             sx={{
                 maxHeight: '50px',
-                padding: '24px',
+                padding: '50px',
             }}
-            
             >
-                <Button variant="text">Home</Button>
-                <Button variant="text">Tasks</Button>
-                <Button variant="text">Pomodoro</Button>
-                <Button variant="text">Dashboard</Button>
+                {buttonLabels.map(label => (
+                    <Button variant="text" sx={{color: "black"}}>{label}</Button>
+                ))}
+                
             </Stack>
-
+            
+            <Stack
+            direction="row" spacing={8}
+            sx={{
+                maxHeight: '50px',
+                padding: '50px',
+            }}
+            >
+                <Button 
+                variant="text" 
+                sx={{
+                    color: "black",  
+                }}
+                >
+                    Sign in
+                </Button>
+            </Stack>
         </Box>
     </header>
 )
