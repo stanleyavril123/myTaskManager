@@ -1,9 +1,15 @@
 import React from "react";
-import Header from './Header';
+import SideBars from './SideBars';
+
 
 function App() {
+  
   return (
-    <Header/>
+
+  <>
+    <SideBars />
+  </>
+
 
 )}
 
