@@ -7,12 +7,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 export default function SideBars() {
 
     const [open, setOpen] = useState(false);
-    const toggleDrawer = (newOpen) => () => {
-        setOpen(newOpen);
-    }
 
     const SideBarList = () => (
-        <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+        <Box sx={{ width: 250 }} role="presentation" onClick={() => setOpen(false)}>
             <List>
                 {['roadmap', 'calender', 'setting'].map((text) => (
                 <ListItem key={text} disablePadding>
@@ -29,7 +26,7 @@ export default function SideBars() {
         <Box sx={{ display: 'flex' }}>
             <Drawer
                 open={open}
-                onClose={toggleDrawer(false)}
+                onClose={() => setOpen(false)}
                 variant="persistent"
                 anchor="left"
             >
@@ -45,7 +42,7 @@ export default function SideBars() {
                 }}
             >
                 <Header />
-                <Button onClick={toggleDrawer(true)} sx={{ margin: '20px' }}>
+                <Button onClick={() => setOpen(!open)} sx={{ margin: '20px' }}>
                     <ArrowForwardIosIcon sx={{color: "black"}}/>
                 </Button>
             </Box>
