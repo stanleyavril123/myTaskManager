@@ -1,7 +1,9 @@
 import React from "react";
-import { Button, Stack, Box } from "@mui/material";
+import { Button, Stack, Box} from "@mui/material";
+import { Link } from "react-router-dom";
 
 const buttonLabels: string[] = ["Home", "Tasks", "Pomodoro", "Dashboard"];
+const buttonPaths: string[] = ["/Home", "/Tasks", "/Pomodoro", "/Dashboard"];
 
 const Header: React.FC = () => (
 
@@ -24,7 +26,11 @@ const Header: React.FC = () => (
             }}
             >
                 {buttonLabels.map((label, index)=> (
-                    <Button key={index} variant="text" sx={{color: "black"}}>{label}</Button>
+                    <Link to={buttonPaths[index]} key={index} style={{ textDecoration: 'none' }}>
+                        <Button key={index} variant="text" sx={{color: "black"}}>
+                            {label}
+                        </Button>
+                    </Link>
                 ))}
                 
             </Stack>
