@@ -1,8 +1,8 @@
 import React from "react";
-import SideBars from './components/Sidebar/SideBars';
+import SideBars from './components/Sidebar/SideBars.tsx';
 
 
-function App() {
+const App: React.FC = () =>  {
   
   return (
 

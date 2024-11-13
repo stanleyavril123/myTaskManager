@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Stack, Box } from "@mui/material";
 
-const buttonLabels = ["Home", "Tasks", "Pomodoro", "Dashboard"];
+const buttonLabels: string[] = ["Home", "Tasks", "Pomodoro", "Dashboard"];
 
-const Header = () => (
+const Header: React.FC = () => (
 
     <header>
         <Box
@@ -23,8 +23,8 @@ const Header = () => (
                 padding: '50px',
             }}
             >
-                {buttonLabels.map(label => (
-                    <Button variant="text" sx={{color: "black"}}>{label}</Button>
+                {buttonLabels.map((label, index)=> (
+                    <Button key={index} variant="text" sx={{color: "black"}}>{label}</Button>
                 ))}
                 
             </Stack>
