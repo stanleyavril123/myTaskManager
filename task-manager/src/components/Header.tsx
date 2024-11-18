@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Stack, Box} from "@mui/material";
 import { Link } from "react-router-dom";
+import LoginIcon from '@mui/icons-material/Login';
 
 const buttonLabels: string[] = ["Home", "Tasks", "Pomodoro", "Dashboard"];
 const buttonPaths: string[] = ["/Home", "/Tasks", "/Pomodoro", "/Dashboard"];
@@ -10,19 +11,17 @@ const Header: React.FC = () => (
     <header>
         <Box
             sx={{
-                outline: 1,
                 height: '125px',
                 display: 'flex',
-                justifyContent: 'space-between',
-                paddingLeft: '650px',
+                justifyContent: 'center',
             }}
             >
             
             <Stack 
-            direction="row" spacing={8}
+            direction="row" spacing={55}
             sx={{
                 maxHeight: '50px',
-                padding: '50px',
+                padding: '10px',
             }}
             >
                 {buttonLabels.map((label, index)=> (
@@ -33,23 +32,6 @@ const Header: React.FC = () => (
                     </Link>
                 ))}
                 
-            </Stack>
-            
-            <Stack
-            direction="row" spacing={8}
-            sx={{
-                maxHeight: '50px',
-                padding: '50px',
-            }}
-            >
-                <Button 
-                variant="text" 
-                sx={{
-                    color: "black",  
-                }}
-                >
-                    Sign in
-                </Button>
             </Stack>
         </Box>
     </header>

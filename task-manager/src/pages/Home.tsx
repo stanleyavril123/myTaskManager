@@ -1,6 +1,5 @@
 import React from "react";
-import SideBars from '../components/Sidebar/SideBars.tsx';
-import TaskForm from "../components/Tasks/TaskForm.tsx";
+import Header from '../components/Header.tsx'
 
 
 const Home: React.FC = () =>  {
@@ -8,7 +7,7 @@ const Home: React.FC = () =>  {
   return (
 
   <>
-    <SideBars />
+    <Header />
   </>
 
 
