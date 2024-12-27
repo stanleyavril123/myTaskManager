@@ -8,7 +8,6 @@ import {
   ListItemText,
   Box,
   Divider,
-  Typography,
 } from "@mui/material";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import HomeIcon from "@mui/icons-material/Home";
@@ -17,6 +16,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import TimerIcon from "@mui/icons-material/Timer";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 // import "./SidebarButtons.css";
 
 interface SidebarButtonsProps {
@@ -34,7 +34,6 @@ const SidebarButtons: React.FC<SidebarButtonsProps> = ({
 
   const sections = [
     {
-      title: "MENU",
       buttons: [
         { text: "Home", path: "/Home", icon: HomeIcon },
         { text: "Tasks", path: "/Tasks", icon: TaskAltIcon },
@@ -43,10 +42,10 @@ const SidebarButtons: React.FC<SidebarButtonsProps> = ({
       ],
     },
     {
-      title: "SUPPORT",
       buttons: [
         { text: "Settings", path: "/Settings", icon: SettingsOutlinedIcon },
         { text: "Help", path: "/Help", icon: HelpOutlineOutlinedIcon },
+        { text: "Profile", path: "/Profile", icon: AccountCircleOutlinedIcon },
       ],
     },
   ];
@@ -88,7 +87,6 @@ const SidebarButtons: React.FC<SidebarButtonsProps> = ({
 
       {sections.map((section, sectionIndex) => (
         <React.Fragment key={sectionIndex}>
-          <Typography className="button-title">{section.title}</Typography>
           <List>
             {section.buttons.map((button, buttonIndex) => {
               const isActive =
@@ -110,13 +108,12 @@ const SidebarButtons: React.FC<SidebarButtonsProps> = ({
                           "margin-left 0.3s ease, margin-right 0.3s ease",
                         borderRadius: "15px",
                         "&:hover": {
-                          color: "white",
-                          backgroundColor: isActive ? "#5fc2d5" : "#a0a0a0",
+                          backgroundColor: isActive ? "#9969df" : "#a0a0a0",
                           transition: "none",
                         },
                         minHeight: 48,
                         px: 2.3,
-                        background: isActive ? "#abdbe3" : "white",
+                        background: isActive ? "#b591ef" : "#121212",
                       },
                     ]}
                   >

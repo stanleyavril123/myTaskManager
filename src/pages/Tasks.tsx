@@ -1,9 +1,12 @@
 import React from "react";
+import { Box } from "@mui/material";
 
-const Tasks: React.FC = () =>  {
-  
+const Tasks: React.FC = () => {
   return (
-    <h1>Task Page</h1>
-)}
+    <Box sx={{ marginLeft: "80px" }}>
+      <h1>Task Page</h1>
+    </Box>
+  );
+};
 
 export default Tasks;
