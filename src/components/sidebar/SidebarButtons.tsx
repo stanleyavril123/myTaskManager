@@ -9,15 +9,14 @@ import {
   Box,
   Divider,
 } from "@mui/material";
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import HomeIcon from "@mui/icons-material/Home";
+import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import TimerIcon from "@mui/icons-material/Timer";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-// import "./SidebarButtons.css";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 interface SidebarButtonsProps {
   isOpen: boolean;
@@ -35,10 +34,10 @@ const SidebarButtons: React.FC<SidebarButtonsProps> = ({
   const sections = [
     {
       buttons: [
-        { text: "Home", path: "/Home", icon: HomeIcon },
+        { text: "Dashboard", path: "/Dashboard", icon: DashboardRoundedIcon },
+        { text: "Calendar", path: "/Calendar", icon: CalendarMonthIcon },
         { text: "Tasks", path: "/Tasks", icon: TaskAltIcon },
         { text: "Pomodoro", path: "/Pomodoro", icon: TimerIcon },
-        { text: "Dashboard", path: "/Dashboard", icon: DashboardOutlinedIcon },
       ],
     },
     {
@@ -91,7 +90,7 @@ const SidebarButtons: React.FC<SidebarButtonsProps> = ({
             {section.buttons.map((button, buttonIndex) => {
               const isActive =
                 location.pathname === button.path ||
-                (location.pathname === "/" && button.path === "/Home");
+                (location.pathname === "/" && button.path === "/Dashboard");
 
               return (
                 <ListItem key={buttonIndex} disablePadding>
