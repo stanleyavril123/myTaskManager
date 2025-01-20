@@ -107,16 +107,17 @@ const SidebarButtons: React.FC<SidebarButtonsProps> = ({
                           "margin-left 0.3s ease, margin-right 0.3s ease",
                         borderRadius: "15px",
                         "&:hover": {
-                          backgroundColor: isActive ? "#9969df" : "#a0a0a0",
+                          backgroundColor: isActive ? "#FCC810" : "#a0a0a0",
                           transition: "none",
                         },
                         minHeight: 48,
                         px: 2.3,
-                        background: isActive ? "#b591ef" : "#121212",
+                        background: isActive ? "#FCC810" : "#121212",
+                        color: isActive ? "black" : "white",
                       },
                     ]}
                   >
-                    <ListItemIcon>
+                    <ListItemIcon sx={{ color: isActive ? "black" : "white" }}>
                       {React.createElement(button.icon)}
                     </ListItemIcon>
                     <ListItemText
