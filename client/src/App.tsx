@@ -6,6 +6,10 @@ import Pomodoro from "./pages/Pomodoro.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import Sidebar from "./components/Sidebar/Sidebar.tsx";
 import Header from "./components/Header/Header.tsx";
+import Settings from "./pages/Settings.tsx";
+import Help from "./pages/Help.tsx";
+import Profile from "./pages/Profile.tsx";
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>
@@ -17,6 +21,9 @@ const App: React.FC = () => {
         <Route path="/Tasks" element={<Tasks />} />
         <Route path="/Pomodoro" element={<Pomodoro />} />
         <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Settings" element={<Settings />} />
+        <Route path="/Help" element={<Help/>} />
+        <Route path="/Profile" element={<Profile/>} />
       </Routes>
     </BrowserRouter>
   );
