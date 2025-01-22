@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                          // Target ECMAScript version
+    "module": "ESNext",                       // Module system
+    "moduleResolution": "Node",              // Resolve modules like Node.js
+    "jsx": "react-jsx",                      // Enable React JSX
+    "strict": true,                          // Enable strict type checking
+    "baseUrl": ".",                          // Base URL for module resolution
+    "paths": {                               // Alias imports
+      "*": ["node_modules/*", "src/*"]
+    },
+    "esModuleInterop": true,                 // Enable compatibility with ES modules
+    "allowSyntheticDefaultImports": true,   // Allow default imports for all modules
+    "resolveJsonModule": true                // Enable importing JSON files
+  },
+  "include": ["src/**/*"],                   // Files to include in the project
+  "exclude": ["node_modules", "dist"]        // Exclude unnecessary files
+}
+
