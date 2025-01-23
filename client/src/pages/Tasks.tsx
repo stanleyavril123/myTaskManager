@@ -1,14 +1,12 @@
 import React from "react";
 import { Box } from "@mui/material";
+import ActionButton from "../components/Tasks/ActionButton.tsx";
 
 const Tasks: React.FC = () => {
   return (
     <Box sx={{ marginLeft: "80px" }}>
-      {/* 
-        TODO:
-        add a button that opens the TaskForum
-      */}
       <h1>Task Page</h1>
+      <ActionButton/>
     </Box>
   );
 };
