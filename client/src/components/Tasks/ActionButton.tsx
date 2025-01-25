@@ -3,10 +3,13 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
-const ActionButton: React.FC = () => {
+interface ActionButtonProps {
+ onClick: () => void; 
+}
+const ActionButton: React.FC<ActionButtonProps> = ({onClick}) => {
   return (
     <Box>
-      <Fab sx={{
+      <Fab onClick={onClick} sx={{
         backgroundColor: "#FCC810",
       }}
         aria-label="add">
