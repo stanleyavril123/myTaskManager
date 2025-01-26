@@ -17,17 +17,34 @@ const TaskForm = () => {
   const [priority, setPriority] = useState("low");
   const [status, setStatus] = useState("not started");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const Task = {
+    const task = {
       title,
       description,
       dueDate,
       priority,
       status,
     };
-    console.log("Submited :", Task.title);
+    try {
+      const response = await fetch("http://localhost:8080/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      });
+      if (response.ok) {
+        const message = await response.text();
+        console.log(message);
+        alert("Task sent successfully!");
+      } else {
+        console.error("Failed to send task");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const fieldStyles = {
