@@ -1,13 +1,44 @@
 package com.example.backend;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
 
+  private final List<Task> tasks = new ArrayList<>();
+  private final ObjectMapper objectMapper = new ObjectMapper(); // to convert java obj to jason
+  private final String filePath = "tasks.json";
+
+  public TaskController() {
+    try {
+      File file = new File(filePath);
+      if (file.exists()) {
+        Task[] loadedTasks = objectMapper.readValue(file, Task[].class);
+        tasks.addAll(List.of(loadedTasks));
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void saveTaskToFile() {
+    try {
+      objectMapper.writeValue(new File(filePath), tasks);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   @PostMapping
   public String createTask(@RequestBody Task task) {
+    tasks.add(task);
+    saveTaskToFile();
     System.out.println("Recived Tak: " + task);
     return "Task recived successfully";
   }
