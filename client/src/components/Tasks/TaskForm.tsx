@@ -15,6 +15,7 @@ const TaskForm = () => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [priority, setPriority] = useState("low");
+  const [pomodoro, setPomodoro] = useState<string | number>(2);
   const [status, setStatus] = useState("not started");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,8 +26,12 @@ const TaskForm = () => {
       description,
       dueDate,
       priority,
+      pomodoro,
       status,
+
     };
+    console.log("Task being sent:", task);
+
     try {
       const response = await fetch("http://localhost:8080/tasks", {
         method: "POST",
@@ -113,6 +118,19 @@ const TaskForm = () => {
           <MenuItem value="low">Low</MenuItem>
           <MenuItem value="medium">Medium</MenuItem>
           <MenuItem value="high">High</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl fullWidth>
+        <InputLabel sx={{ color: "#FFFFFF" }}>Pomodoro</InputLabel>
+        <Select
+          value={pomodoro}
+          onChange={(e) => setPomodoro(Number(e.target.value))}
+          sx={{ color: "#FFFFFF", ...fieldStyles }}
+        >
+          <MenuItem value={1}>One Pomo</MenuItem>
+          <MenuItem value={2}>Two Pomo</MenuItem>
+          <MenuItem value={3}>Three Pomo</MenuItem>
+          <MenuItem value={4}>Four Pomo</MenuItem>
         </Select>
       </FormControl>
       <FormControl fullWidth>

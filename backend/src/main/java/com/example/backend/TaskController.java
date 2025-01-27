@@ -49,6 +49,7 @@ class Task {
   private String description;
   private String dueDate;
   private String priority;
+  private Integer pomodoro;
   private String status;
 
   public String getTitle() {
@@ -83,6 +84,14 @@ class Task {
     this.priority = priority;
   }
 
+  public Integer getPomodoro() {
+    return pomodoro;
+  }
+
+  public void setPomodoro(Integer pomodoro) {
+    this.pomodoro = pomodoro;
+  }
+
   public String getStatus() {
     return status;
   }
@@ -105,6 +114,9 @@ class Task {
         + '\''
         + ", priority='"
         + priority
+        + '\''
+        + ", pomodoro='"
+        + pomodoro
         + '\''
         + ", status='"
         + status
