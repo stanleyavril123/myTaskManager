@@ -35,6 +35,11 @@ public class TaskController {
     }
   }
 
+  @GetMapping
+  public List<Task> getAllTasks() {
+    return tasks;
+  }
+
   @PostMapping
   public String createTask(@RequestBody Task task) {
     tasks.add(task);
