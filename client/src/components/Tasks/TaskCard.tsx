@@ -1,6 +1,11 @@
 import React from "react";
+import { Task } from "../../types";
 
-const TaskCard: React.FC = () => {
+interface TaskProps {
+  task: Task;
+}
+
+const TaskCard: React.FC<TaskProps> = ({ task }) => {
   return <></>;
 };
 

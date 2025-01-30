@@ -2,15 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import ActionButton from "../components/Tasks/ActionButton.tsx";
 import TaskForm from "../components/Tasks/TaskForm.tsx";
+import { Task } from "../types.ts";
 import TaskCard from "../components/Tasks/TaskCard.tsx";
 
-interface Task {
-  title: string;
-  description: string;
-  dueDate: string;
-  priority: string;
-  status: string;
-}
 const Tasks: React.FC = () => {
   const [formIsOpen, setFormIsOpen] = useState<true | false>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
