@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import theme from "./styles/theme.js";
+import theme from "./styles/theme.ts";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);

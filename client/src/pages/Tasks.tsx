@@ -36,15 +36,10 @@ const Tasks: React.FC = () => {
       <h1>Task Page</h1>
       <ActionButton onClick={toggleForm} />
       {formIsOpen && <TaskForm />}
-      {/*TODO: Put each task in a task card*/}
       <h1>All Tasks</h1>
       {tasks.map((task, index) => (
         <div key={index}>
-          <h3>{task.title}</h3>
-          <p>{task.description}</p>
-          <p>Due: {task.dueDate}</p>
-          <p>Status: {task.status}</p>
-          <p>Priority: {task.priority}</p>
+          <TaskCard task={task} />
         </div>
       ))}
     </Box>

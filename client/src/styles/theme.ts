@@ -16,6 +16,15 @@ const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
+        ":root": {
+          fontFamily: "Inter, sans-serif",
+          fontFeatureSettings: "'liga' 1, 'calt' 1",
+        },
+        "@supports (font-variation-settings: normal)": {
+          ":root": {
+            fontFamily: "InterVariable, sans-serif",
+          },
+        },
         html: {
           scrollBehavior: "smooth",
           height: "100%",
