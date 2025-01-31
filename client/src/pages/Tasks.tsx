@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import ActionButton from "../components/Tasks/ActionButton.tsx";
 import TaskForm from "../components/Tasks/TaskForm.tsx";
 import { Task } from "../types.ts";
@@ -32,16 +33,31 @@ const Tasks: React.FC = () => {
   };
   if (loding) return <div>Loding tasks ...</div>;
   return (
-    <Box sx={{ marginLeft: "80px" }}>
-      <h1>Task Page</h1>
-      <ActionButton onClick={toggleForm} />
+    <Box sx={{ marginLeft: "80px", position: "relative", p: 2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          mb: 2,
+        }}
+      >
+        <Typography variant="h4">All Tasks</Typography>
+        <ActionButton onClick={toggleForm} />
+      </Box>
+
       {formIsOpen && <TaskForm />}
-      <h1>All Tasks</h1>
-      {tasks.map((task, index) => (
-        <div key={index}>
-          <TaskCard task={task} />
-        </div>
-      ))}
+
+      <Grid
+        container
+        spacing={2}
+      >
+        {tasks.map((task, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <TaskCard task={task} />
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };

@@ -8,19 +8,20 @@ interface TaskProps {
 
 const TaskCard: React.FC<TaskProps> = ({ task }) => {
   return (
- <Card 
-      sx={{ 
+    <Card
+      sx={{
+        width: 320,
         backgroundColor: "#1e1e1e",
-        color: "#ffffff", 
-        padding: 2, 
-        borderRadius: 2, 
+        color: "#ffffff",
+        borderRadius: 2,
         boxShadow: 3,
-        maxWidth: 400,
-        margin: "auto",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <CardContent>
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 1 }}>
+        <Typography variant="h4" sx={{mb: 1 }}>
           {task.title}
         </Typography>
 
@@ -33,22 +34,22 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
         </Typography>
 
         <Box sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}>
-          <Chip 
-            label={task.priority} 
+          <Chip
+            label={task.priority}
             sx={{
               backgroundColor: getPriorityColor(task.priority),
               color: "#000",
-              fontWeight: "bold"
-            }} 
+              fontWeight: "bold",
+            }}
           />
 
-          <Chip 
-            label={task.status} 
+          <Chip
+            label={task.status}
             sx={{
               backgroundColor: getStatusColor(task.status),
               color: "#fff",
-              fontWeight: "bold"
-            }} 
+              fontWeight: "bold",
+            }}
           />
         </Box>
       </CardContent>
@@ -58,19 +59,27 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
 
 const getPriorityColor = (priority: string) => {
   switch (priority.toLowerCase()) {
-    case "high": return "#ff3d00"; // Red
-    case "medium": return "#ffb300"; // Orange
-    case "low": return "#4caf50"; // Green
-    default: return "#757575"; // Gray
+    case "high":
+      return "#ff3d00"; // Red
+    case "medium":
+      return "#ffb300"; // Orange
+    case "low":
+      return "#4caf50"; // Green
+    default:
+      return "#757575"; // Gray
   }
 };
 
 const getStatusColor = (status: string) => {
   switch (status.toLowerCase()) {
-    case "not started": return "#616161"; // Dark gray
-    case "in progress": return "#1976d2"; // Blue
-    case "completed": return "#388e3c"; // Green
-    default: return "#424242"; // Default gray
+    case "not started":
+      return "#616161"; // Dark gray
+    case "in progress":
+      return "#1976d2"; // Blue
+    case "completed":
+      return "#388e3c"; // Green
+    default:
+      return "#424242"; // Default gray
   }
 };
 
