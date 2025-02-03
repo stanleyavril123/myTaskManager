@@ -17,16 +17,12 @@ import TimerIcon from "@mui/icons-material/Timer";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { useSidebar } from "./SidebarContext.tsx";
 
-interface SidebarButtonsProps {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-const SidebarButtons: React.FC<SidebarButtonsProps> = ({
-  isOpen,
-  setIsOpen,
-}) => {
+const SidebarButtons: React.FC= (
+) => {
+  const { isOpen, setIsOpen } = useSidebar();
   const navigate = useNavigate();
   const location = useLocation();
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);

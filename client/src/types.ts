@@ -5,3 +5,8 @@ export interface Task {
   priority: string;
   status: string;
 }
+
+export interface SidebarContextType {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}

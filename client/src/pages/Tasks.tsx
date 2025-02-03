@@ -5,11 +5,14 @@ import ActionButton from "../components/Tasks/ActionButton.tsx";
 import TaskForm from "../components/Tasks/TaskForm.tsx";
 import { Task } from "../types.ts";
 import TaskCard from "../components/Tasks/TaskCard.tsx";
+import { useSidebar } from "../components/Sidebar/SidebarContext.tsx";
 
 const Tasks: React.FC = () => {
+  const { isOpen, setIsOpen } = useSidebar();
   const [formIsOpen, setFormIsOpen] = useState<true | false>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loding, setLoding] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -33,7 +36,14 @@ const Tasks: React.FC = () => {
   };
   if (loding) return <div>Loding tasks ...</div>;
   return (
-    <Box sx={{ marginLeft: "80px", position: "relative", p: 2 }}>
+    <Box
+      sx={{
+        marginLeft: isOpen ? "300px" : "80px",
+        transition: "margin-left 0.2s ease-in-out",
+        position: "relative",
+        p: 2,
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -48,10 +58,7 @@ const Tasks: React.FC = () => {
 
       {formIsOpen && <TaskForm />}
 
-      <Grid
-        container
-        spacing={2}
-      >
+      <Grid container spacing={2}>
         {tasks.map((task, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <TaskCard task={task} />

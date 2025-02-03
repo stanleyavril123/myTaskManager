@@ -1,10 +1,10 @@
 import React from "react";
 import { Drawer } from "@mui/material";
-import { useState } from "react";
 import SidebarButtons from "./SidebarButtons.tsx";
+import { useSidebar } from "./SidebarContext.tsx";
 
 const Sidebar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<true | false>(false);
+  const { isOpen, setIsOpen } = useSidebar();
   return (
     <>
       <Drawer
@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
         onClose={() => setIsOpen(false)}
         variant="permanent"
       >
-        <SidebarButtons isOpen={isOpen} setIsOpen={setIsOpen} />
+        <SidebarButtons />
       </Drawer>
     </>
   );
