@@ -8,7 +8,7 @@ import TaskCard from "../components/Tasks/TaskCard.tsx";
 import { useSidebar } from "../components/Sidebar/SidebarContext.tsx";
 
 const Tasks: React.FC = () => {
-  const { isOpen, setIsOpen } = useSidebar();
+  const { isOpen } = useSidebar();
   const [formIsOpen, setFormIsOpen] = useState<true | false>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loding, setLoding] = useState<boolean>(true);
