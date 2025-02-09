@@ -1,6 +1,15 @@
 import React from "react";
 import { Task } from "../../types";
-import { Box, Card, CardContent, Typography, Chip } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Chip,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Divider,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface TaskProps {
   task: Task;
@@ -8,52 +17,80 @@ interface TaskProps {
 
 const TaskCard: React.FC<TaskProps> = ({ task }) => {
   return (
-    <Card
+    <Box
       sx={{
-        width: 320,
-        backgroundColor: "#1e1e1e",
-        color: "#ffffff",
-        borderRadius: 2,
-        boxShadow: 3,
-        height: "100%",
+        width: "100vw",
         display: "flex",
-        flexDirection: "column",
+        justifyContent: "center",
       }}
     >
-      <CardContent>
-        <Typography variant="h4" sx={{mb: 1 }}>
+      <Accordion
+        sx={{
+          width: "100%",
+          maxWidth: "100%",
+          backgroundColor: "#1e1e1e",
+          color: "#ffffff",
+          borderRadius: "4px",
+          boxShadow: "none",
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon sx={{ color: "#FCC810" }} />}
+          sx={{
+            typography: "h6",
+            fontWeight: "bold",
+            padding: "16px",
+          }}
+        >
           {task.title}
-        </Typography>
+        </AccordionSummary>
 
-        <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
-          {task.description}
-        </Typography>
+        <AccordionDetails sx={{ padding: "16px" }}>
+          <Typography
+            variant="body2"
+            sx={{ opacity: 0.8, marginBottom: "12px" }}
+          >
+            {task.description}
+          </Typography>
 
-        <Typography variant="body2" sx={{ mb: 1 }}>
-          📅 Due: <strong>{task.dueDate}</strong>
-        </Typography>
-
-        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 1 }}>
-          <Chip
-            label={task.priority}
+          <Divider
             sx={{
-              backgroundColor: getPriorityColor(task.priority),
-              color: "#000",
-              fontWeight: "bold",
+              borderColor: "rgba(255, 255, 255, 0.2)",
+              marginBottom: "12px",
             }}
           />
 
-          <Chip
-            label={task.status}
-            sx={{
-              backgroundColor: getStatusColor(task.status),
-              color: "#fff",
-              fontWeight: "bold",
-            }}
-          />
-        </Box>
-      </CardContent>
-    </Card>
+          <Typography variant="body2" sx={{ marginBottom: "8px" }}>
+            <span style={{ color: "#FCC810", fontWeight: "bold" }}>
+              📅 Due:
+            </span>{" "}
+            {task.dueDate}
+          </Typography>
+
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <Chip
+              label={task.priority}
+              sx={{
+                backgroundColor: getPriorityColor(task.priority),
+                color: "#000",
+                fontWeight: "bold",
+                textTransform: "uppercase",
+              }}
+            />
+
+            <Chip
+              label={task.status}
+              sx={{
+                backgroundColor: getStatusColor(task.status),
+                color: "#fff",
+                fontWeight: "bold",
+                textTransform: "uppercase",
+              }}
+            />
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+    </Box>
   );
 };
 

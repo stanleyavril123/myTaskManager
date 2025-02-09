@@ -60,9 +60,18 @@ const Tasks: React.FC = () => {
 
       <Grid container spacing={2}>
         {tasks.map((task, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Box
+            key={index}
+            sx={{
+              width: "100%",
+              maxWidth: "100%",
+              display: "flex",
+              justifyContent: "center",
+             
+            }}
+          >
             <TaskCard task={task} />
-          </Grid>
+          </Box>
         ))}
       </Grid>
     </Box>
