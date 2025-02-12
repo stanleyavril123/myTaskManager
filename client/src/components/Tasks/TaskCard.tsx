@@ -13,87 +13,93 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface TaskProps {
   task: Task;
+  isFirst: boolean;
+  isLast: boolean;
 }
 
-const TaskCard: React.FC<TaskProps> = ({ task }) => {
+const TaskCard: React.FC<TaskProps> = ({ task, isFirst, isLast }) => {
   return (
-    <Box
-      sx={{
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
+    <Accordion
+      // KEY #1: Use `PaperProps` to control the Paper's actual border radius.
+      PaperProps={{
+        sx: {
+          borderRadius: isFirst ? "8px 8px 0 0" : isLast ? "0 0 8px 8px" : 0,
+        },
       }}
+      sx={{
+        // Ensure full width
+        width: "100vw",
+        backgroundColor: "#1e1e1e",
+        color: "#ffffff",
+        boxShadow: "none",
+        marginBottom: "0px",
+
+        // KEY #2: Remove the MUI default top divider line
+        "&:before": {
+          display: "none",
+        },
+
+        // If you want no “gutter” between accordions,
+        // you can set border for non-first items if needed:
+        "&:not(:first-of-type)": {
+          borderTop: "1px solid rgba(255,255,255,0.2)",
+        },
+      }}
+      disableGutters
     >
-      <Accordion
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon sx={{ color: "#FCC810" }} />}
         sx={{
-          width: "100%",
-          maxWidth: "100%",
-          backgroundColor: "#1e1e1e",
-          color: "#ffffff",
-          borderRadius: "4px",
-          boxShadow: "none",
+          typography: "h6",
+          fontWeight: "bold",
+          padding: "16px",
         }}
       >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon sx={{ color: "#FCC810" }} />}
+        {task.title}
+      </AccordionSummary>
+
+      <AccordionDetails sx={{ padding: "16px" }}>
+        <Typography variant="body2" sx={{ opacity: 0.8, marginBottom: "12px" }}>
+          {task.description}
+        </Typography>
+
+        <Divider
           sx={{
-            typography: "h6",
-            fontWeight: "bold",
-            padding: "16px",
+            borderColor: "rgba(255, 255, 255, 0.2)",
+            marginBottom: "12px",
           }}
-        >
-          {task.title}
-        </AccordionSummary>
+        />
 
-        <AccordionDetails sx={{ padding: "16px" }}>
-          <Typography
-            variant="body2"
-            sx={{ opacity: 0.8, marginBottom: "12px" }}
-          >
-            {task.description}
-          </Typography>
+        <Typography variant="body2" sx={{ marginBottom: "8px" }}>
+          <span style={{ color: "#FCC810", fontWeight: "bold" }}>📅 Due:</span>{" "}
+          {task.dueDate}
+        </Typography>
 
-          <Divider
+        <Box sx={{ display: "flex", gap: 1 }}>
+          <Chip
+            label={task.priority}
             sx={{
-              borderColor: "rgba(255, 255, 255, 0.2)",
-              marginBottom: "12px",
+              backgroundColor: getPriorityColor(task.priority),
+              color: "#000",
+              fontWeight: "bold",
+              textTransform: "uppercase",
             }}
           />
 
-          <Typography variant="body2" sx={{ marginBottom: "8px" }}>
-            <span style={{ color: "#FCC810", fontWeight: "bold" }}>
-              📅 Due:
-            </span>{" "}
-            {task.dueDate}
-          </Typography>
-
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <Chip
-              label={task.priority}
-              sx={{
-                backgroundColor: getPriorityColor(task.priority),
-                color: "#000",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-              }}
-            />
-
-            <Chip
-              label={task.status}
-              sx={{
-                backgroundColor: getStatusColor(task.status),
-                color: "#fff",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-              }}
-            />
-          </Box>
-        </AccordionDetails>
-      </Accordion>
-    </Box>
+          <Chip
+            label={task.status}
+            sx={{
+              backgroundColor: getStatusColor(task.status),
+              color: "#fff",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+            }}
+          />
+        </Box>
+      </AccordionDetails>
+    </Accordion>
   );
 };
-
 const getPriorityColor = (priority: string) => {
   switch (priority.toLowerCase()) {
     case "high":

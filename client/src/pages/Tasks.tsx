@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 import ActionButton from "../components/Tasks/ActionButton.tsx";
 import TaskForm from "../components/Tasks/TaskForm.tsx";
 import { Task } from "../types.ts";
@@ -34,6 +33,22 @@ const Tasks: React.FC = () => {
   const toggleForm = () => {
     setFormIsOpen((formIsOpen) => !formIsOpen);
   };
+  const groupedTasks: { [key: string]: Task[] } = tasks.reduce(
+    (acc, task) => {
+      if (!acc[task.dueDate]) {
+        acc[task.dueDate] = [];
+      }
+      acc[task.dueDate].push(task);
+      return acc;
+    },
+    {} as { [key: string]: Task[] },
+  );
+
+  const sortedDates = Object.keys(groupedTasks).sort(
+    (a, b) =>
+      new Date(a + "T00:00:00").getTime() - new Date(b + "T00:00:00").getTime(),
+  );
+
   if (loding) return <div>Loding tasks ...</div>;
   return (
     <Box
@@ -55,25 +70,56 @@ const Tasks: React.FC = () => {
         <Typography variant="h4">All Tasks</Typography>
         <ActionButton onClick={toggleForm} />
       </Box>
-
       {formIsOpen && <TaskForm />}
 
-      <Grid container spacing={2}>
-        {tasks.map((task, index) => (
+      {sortedDates.map((dueDate) => {
+        // Convert "YYYY-MM-DD" to local date
+        const localDate = new Date(dueDate + "T00:00:00");
+
+        return (
           <Box
-            key={index}
+            key={dueDate}
             sx={{
-              width: "100%",
+              width: "100vw",
               maxWidth: "100%",
+              padding: "16px 0",
               display: "flex",
-              justifyContent: "center",
-             
+              flexDirection: "column",
+              alignItems: "center",
+              borderBottom: "2px solid rgba(255,255,255,0.2)",
             }}
           >
-            <TaskCard task={task} />
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                textTransform: "uppercase",
+                padding: "12px",
+              }}
+            >
+              {localDate.toDateString()}
+            </Typography>
+
+            {groupedTasks[dueDate].map((task, index, arr) => (
+              <Box
+                key={index}
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <TaskCard
+                  key={index}
+                  task={task}
+                  isFirst={index === 0}
+                  isLast={index === arr.length - 1}
+                />
+              </Box>
+            ))}
           </Box>
-        ))}
-      </Grid>
+        );
+      })}
     </Box>
   );
 };

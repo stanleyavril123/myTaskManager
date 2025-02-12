@@ -1,1 +1,58 @@
-[{"title":"test pomo","description":"hello this is a test","dueDate":"2025-02-06","priority":"medium","pomodoro":2,"status":"not started"},{"title":"hwllo","description":"get test","dueDate":"2025-01-07","priority":"high","pomodoro":3,"status":"in progress"},{"title":"This IS an other test aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","description":"i am a description","dueDate":"2025-02-06","priority":"low","pomodoro":2,"status":"completed"},{"title":"test2","description":"sdaf","dueDate":"2025-02-06","priority":"low","pomodoro":2,"status":"not started"},{"title":"test2","description":"sdaf","dueDate":"2025-02-06","priority":"low","pomodoro":2,"status":"not started"},{"title":"test2","description":"sdaf","dueDate":"2025-02-06","priority":"low","pomodoro":2,"status":"not started"},{"title":"test2","description":"sdaf","dueDate":"2025-02-06","priority":"low","pomodoro":2,"status":"not started"},{"title":"hello workd","description":"i love coding","dueDate":"2025-02-22","priority":"low","pomodoro":2,"status":"in progress"}]
+[
+  {
+    "title": "test pomo",
+    "description": "hello this is a test",
+    "dueDate": "2025-02-06",
+    "priority": "medium",
+    "pomodoro": 2,
+    "status": "not started"
+  },
+  {
+    "title": "hwllo",
+    "description": "get test",
+    "dueDate": "2025-01-07",
+    "priority": "high",
+    "pomodoro": 3,
+    "status": "in progress"
+  },
+  {
+    "title": "This IS an other test aaaaaaaaaaaaaaaaaa",
+    "description": "i am a description",
+    "dueDate": "2025-02-06",
+    "priority": "low",
+    "pomodoro": 2,
+    "status": "completed"
+  },
+  {
+    "title": "test2",
+    "description": "sdaf",
+    "dueDate": "2025-02-06",
+    "priority": "low",
+    "pomodoro": 2,
+    "status": "not started"
+  },
+  {
+    "title": "test2",
+    "description": "sdaf",
+    "dueDate": "2025-02-06",
+    "priority": "low",
+    "pomodoro": 2,
+    "status": "not started"
+  },
+  {
+    "title": "test2",
+    "description": "sdaf",
+    "dueDate": "2025-02-06",
+    "priority": "low",
+    "pomodoro": 2,
+    "status": "not started"
+  },
+  {
+    "title": "test2",
+    "description": "sdaf",
+    "dueDate": "2025-02-06",
+    "priority": "low",
+    "pomodoro": 2,
+    "status": "not started"
+  }
+]
