@@ -20,27 +20,22 @@ interface TaskProps {
 const TaskCard: React.FC<TaskProps> = ({ task, isFirst, isLast }) => {
   return (
     <Accordion
-      // KEY #1: Use `PaperProps` to control the Paper's actual border radius.
       PaperProps={{
         sx: {
           borderRadius: isFirst ? "8px 8px 0 0" : isLast ? "0 0 8px 8px" : 0,
         },
       }}
       sx={{
-        // Ensure full width
         width: "100vw",
         backgroundColor: "#1e1e1e",
         color: "#ffffff",
         boxShadow: "none",
-        marginBottom: "0px",
+        marginBottom: "5px",
 
-        // KEY #2: Remove the MUI default top divider line
         "&:before": {
           display: "none",
         },
 
-        // If you want no “gutter” between accordions,
-        // you can set border for non-first items if needed:
         "&:not(:first-of-type)": {
           borderTop: "1px solid rgba(255,255,255,0.2)",
         },

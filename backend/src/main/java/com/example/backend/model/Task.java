@@ -1,61 +1,29 @@
-package com.example.backend;
+package com.example.backend.model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import org.springframework.web.bind.annotation.*;
+import jakarta.persistence.*;
 
-@RestController
-@RequestMapping("/tasks")
-public class TaskController {
+@Entity
+@Table(name = "tasks")
+public class Task {
 
-  private final List<Task> tasks = new ArrayList<>();
-  private final ObjectMapper objectMapper = new ObjectMapper(); // to convert java obj to jason
-  private final String filePath = "tasks.json";
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-  public TaskController() {
-    try {
-      File file = new File(filePath);
-      if (file.exists()) {
-        Task[] loadedTasks = objectMapper.readValue(file, Task[].class);
-        tasks.addAll(List.of(loadedTasks));
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  private void saveTaskToFile() {
-    try {
-      objectMapper.writeValue(new File(filePath), tasks);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  @GetMapping
-  public List<Task> getAllTasks() {
-    return tasks;
-  }
-
-  @PostMapping
-  public String createTask(@RequestBody Task task) {
-    tasks.add(task);
-    saveTaskToFile();
-    System.out.println("Recived Tak: " + task);
-    return "Task recived successfully";
-  }
-}
-
-class Task {
   private String title;
   private String description;
   private String dueDate;
   private String priority;
   private Integer pomodoro;
   private String status;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public String getTitle() {
     return title;
