@@ -5,6 +5,7 @@ import TaskForm from "../components/Tasks/TaskForm.tsx";
 import { Task } from "../types.ts";
 import TaskCard from "../components/Tasks/TaskCard.tsx";
 import { useSidebar } from "../components/Sidebar/SidebarContext.tsx";
+import QuickAction from "../components/Tasks/QuickActions.tsx";
 
 const Tasks: React.FC = () => {
   const { isOpen } = useSidebar();
@@ -51,75 +52,81 @@ const Tasks: React.FC = () => {
 
   if (loding) return <div>Loding tasks ...</div>;
   return (
-    <Box
-      sx={{
-        marginLeft: isOpen ? "300px" : "80px",
-        transition: "margin-left 0.2s ease-in-out",
-        position: "relative",
-        p: 2,
-      }}
-    >
+    <Box sx={{ display: "flex", height: "100vh" }}>
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          mb: 2,
+          width: "70%",
+          marginLeft: isOpen ? "300px" : "80px",
+          transition: "margin-left 0.2s ease-in-out",
+          position: "relative",
+          p: 2,
         }}
       >
-        <Typography variant="h4">All Tasks</Typography>
-        <ActionButton onClick={toggleForm} />
-      </Box>
-      {formIsOpen && <TaskForm />}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            mb: 2,
+          }}
+        >
+          <Typography variant="h4">All Tasks</Typography>
+          <ActionButton onClick={toggleForm} />
+        </Box>
+        {formIsOpen && <TaskForm />}
 
-      {sortedDates.map((dueDate) => {
-        // Convert "YYYY-MM-DD" to local date
-        const localDate = new Date(dueDate + "T00:00:00");
+        {sortedDates.map((dueDate) => {
+          // Convert "YYYY-MM-DD" to local date
+          const localDate = new Date(dueDate + "T00:00:00");
 
-        return (
-          <Box
-            key={dueDate}
-            sx={{
-              width: "100vw",
-              maxWidth: "100%",
-              padding: "16px 0",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderBottom: "2px solid rgba(255,255,255,0.2)",
-            }}
-          >
-            <Typography
-              variant="h5"
+          return (
+            <Box
+              key={dueDate}
               sx={{
-                fontWeight: "bold",
-                textTransform: "uppercase",
-                padding: "12px",
+                width: "100vw",
+                maxWidth: "100%",
+                padding: "16px 0",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                borderBottom: "2px solid rgba(255,255,255,0.2)",
               }}
             >
-              {localDate.toDateString()}
-            </Typography>
-
-            {groupedTasks[dueDate].map((task, index, arr) => (
-              <Box
-                key={index}
+              <Typography
+                variant="h5"
                 sx={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
+                  padding: "12px",
                 }}
               >
-                <TaskCard
+                {localDate.toDateString()}
+              </Typography>
+
+              {groupedTasks[dueDate].map((task, index, arr) => (
+                <Box
                   key={index}
-                  task={task}
-                  isFirst={index === 0}
-                  isLast={index === arr.length - 1}
-                />
-              </Box>
-            ))}
-          </Box>
-        );
-      })}
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <TaskCard
+                    key={index}
+                    task={task}
+                    isFirst={index === 0}
+                    isLast={index === arr.length - 1}
+                  />
+                </Box>
+              ))}
+            </Box>
+          );
+        })}
+      </Box>
+      <Box>
+        <QuickAction />
+      </Box>
     </Box>
   );
 };
