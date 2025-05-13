@@ -55,7 +55,7 @@ const Tasks: React.FC = () => {
     <Box sx={{ display: "flex", height: "100vh" }}>
       <Box
         sx={{
-          width: "70%",
+          width: "75%",
           marginLeft: isOpen ? "300px" : "80px",
           transition: "margin-left 0.2s ease-in-out",
           position: "relative",
